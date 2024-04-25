@@ -10,11 +10,14 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+ //   @Query private var items: //[Item]
 
     var body: some View {
-        NavigationSplitView {
-            List {
+      //  NavigationSplitView {
+            
+            ViewControllerBridge()
+            
+         /*   List {
                 ForEach(items) { item in
                     NavigationLink {
                         Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
@@ -51,11 +54,11 @@ struct ContentView: View {
             for index in offsets {
                 modelContext.delete(items[index])
             }
-        }
+        }*/
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+     /*   .modelContainer(for: Item.self, inMemory: true)*/
 }
