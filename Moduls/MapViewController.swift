@@ -19,16 +19,25 @@ class MapViewController: UIViewController {
     private var polyline: GMSPolyline? // Polilínea del recorrido
     let recordButton = UIButton(type: .system) // Botón de grabación
     var currentRouteCordinates = [CLLocation]() // Coordenadas del recorrido actual
-    var routes = [Routes]()
-    var startDate: Date = .now
-    var endDate : Date = .now
+    var routes = [Routes]() // Lista de rutas guardadas
+    var startDate: Date = .now // Fecha de inicio de la grabación
+    var endDate : Date = .now // Fecha de fin de la grabación
+    let screenSize =  UIScreen.main.bounds // Tamaño de la pantalla
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let screenHeigh = screenSize.height/2 // Calcula el alto de la pantalla dividido por 2
+        let rect = CGRect(x: 0, y: 0, width: screenHeigh, height: screenSize.width) // Define un rectángulo con el ancho y alto de la pantalla, intercambiados
+        
+        
+        
         // Configurar el mapa
+        // Configurar el mapa con una posición y zoom específicos
         let camera = GMSCameraPosition.camera(withLatitude: 19.639073, longitude: -99.088213, zoom: 12)
-        mapView = GMSMapView(frame: view.bounds, camera: camera)
+        mapView = GMSMapView(frame: rect, camera: camera)
         view.addSubview(mapView)
         
         // Configurar el botón de grabación
@@ -68,6 +77,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    // Función para calcular la distancia recorrida
     func calculateDistanceTraveled() -> Double {
         var distance: Double = 0.0
         
@@ -183,3 +193,5 @@ extension MapViewController: CLLocationManagerDelegate {
         updatePolyline(with: currentRouteCordinates)
     }
 }
+
+
