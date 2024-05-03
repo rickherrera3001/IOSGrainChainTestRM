@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
       //  NavigationSplitView {
             
-            ViewControllerBridge()
+                ViewControllerBridge()
             
          /*   List {
                 ForEach(items) { item in
